@@ -1,14 +1,13 @@
-import React from 'react';
-import { Switch, Redirect } from 'react-router';
-import App from './App';
+import React from "react";
+import { Switch, Redirect } from "react-router-dom";
+import App from "./App";
 
-const routes = (store) => {
+const routes = store => {
   return (
     <Switch>
-      <App>
-      </App>
-      <Redirect from='*' to='/' />
+      <App />
+      <Redirect from="*" to="/" />
     </Switch>
-  )
+  );
 };
 export default routes;
