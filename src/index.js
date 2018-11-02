@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
+import routes from "./routes";
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const state = window.__initialState__ || undefined;
 const store = configureStore(state);
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
+      {routes(store)}
+    </BrowserRouter>
   </Provider>
   , document.getElementById('root'));
 
