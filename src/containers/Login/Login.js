@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Card, CardContent, TextField, Button } from "@material-ui/core";
+import { loginUser } from "../../redux/authentication";
 import "./Login.scss";
 
 class Login extends Component {
@@ -35,11 +37,13 @@ class Login extends Component {
     event.preventDefault();
     //Check the login requirements
     const { username, password } = this.state;
-    const error = {
-      error_username: this.checkUsername(username),
-      error_password: this.checkPassword(password)
-    };
-    this.setState(error);
+    const { loginUser, history } = this.props;
+    const error_username = this.checkUsername(username);
+    const error_password = this.checkPassword(password);
+    if (!error_username && !error_password) {
+      loginUser(username);
+    }
+    this.setState({ error_username, error_password }, history.push("/"));
   };
 
   handleChange = event => {
@@ -99,4 +103,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(
+  state => ({}),
+  { loginUser }
+)(Login);
