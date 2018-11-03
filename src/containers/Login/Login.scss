@@ -1,0 +1,17 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .card-login {
+    min-width: 300px;
+    .title-login {
+      text-align: center;
+    }
+    .body-login {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+    }
+  }
+}

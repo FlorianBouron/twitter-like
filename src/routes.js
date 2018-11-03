@@ -1,11 +1,11 @@
 import React from "react";
-import { Switch, Redirect } from "react-router-dom";
-import App from "./App";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Login from "./containers/Login";
 
 const routes = store => {
   return (
     <Switch>
-      <App />
+      <Route path="/login" render={props => <Login />} />
       <Redirect from="*" to="/" />
     </Switch>
   );
