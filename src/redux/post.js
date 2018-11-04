@@ -30,7 +30,7 @@ export const fetchPosts = () => {
       .then(({ data }) => {
         dispatch({
           type: FETCH_POSTS,
-          data
+          data: data.reverse()
         });
       })
       .catch(error => {
