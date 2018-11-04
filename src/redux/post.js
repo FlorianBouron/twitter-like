@@ -3,6 +3,7 @@ import config from "../config";
 
 const FETCH_POSTS = "post/FETCH_POSTS";
 const ERROR_POSTS = "post/ERROR_POSTS";
+const FILTER_POST = "post/FILTER_POST";
 
 const initialState = {
   data: [],
@@ -41,14 +42,33 @@ export const fetchPosts = () => {
   };
 };
 
+export const filterPosts = filter => {
+  return dispatch => {
+    dispatch({
+      type: FILTER_POST,
+      data: filter
+    });
+  };
+};
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case FETCH_POSTS:
+    case FETCH_POSTS: {
       const data = action.data;
       return Object.assign({}, state, { data, fetchedData: data });
-    case ERROR_POSTS:
+    }
+    case ERROR_POSTS: {
       const error = action.data;
       return Object.assign({}, state, { error });
+    }
+    case FILTER_POST: {
+      const filter = action.data;
+      const { fetchedData } = state;
+      const data = fetchedData.filter(
+        post => post.title.includes(filter) || post.body.includes(filter)
+      );
+      return Object.assign({}, state, { data, filter });
+    }
     default:
       return state;
   }
