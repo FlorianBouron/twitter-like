@@ -1,2 +1,43 @@
 .posts-container {
+  .header-posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+    .logout-button {
+      width: calc(100vw - 80px);
+      // Medium devices (tablets, 768px and up)
+      @media (min-width: 768px) {
+        width: calc(50vw - 75px);
+      }
+      // Large devices (desktops, 992px and up)
+      @media (min-width: 992px) {
+        width: calc(33vw - 65px);
+      }
+    }
+    .search-button {
+      width: calc(100vw - 80px);
+      margin-top: 20px;
+      // Medium devices (tablets, 768px and up)
+      @media (min-width: 768px) {
+        margin-top: 0;
+        width: calc(50vw - 75px);
+      }
+      // Large devices (desktops, 992px and up)
+      @media (min-width: 992px) {
+        width: calc(66% - 10px);
+      }
+    }
+  }
+  .posts-main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
 }
