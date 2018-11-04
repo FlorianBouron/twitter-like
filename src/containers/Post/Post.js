@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { Button, CircularProgress } from "@material-ui/core";
 import { fetchPosts, selectors } from "../../redux/post";
 import NotFound from "../NotFound";
-import "./Post.scss";
 import ModalError from "../../components/ModalError";
+import "./Post.scss";
 
 class Post extends Component {
   componentDidMount() {
