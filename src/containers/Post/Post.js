@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, CircularProgress } from "@material-ui/core";
 import { fetchPosts, selectors } from "../../redux/post";
+import NotFound from "../NotFound";
 import "./Post.scss";
 
 class Post extends Component {
@@ -14,8 +15,8 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props;
-    if (post) {
+    const { posts, post } = this.props;
+    if (posts.length > 1 && post) {
       const { userId, id, title, body } = post;
       return (
         <div className="post-container">
@@ -41,6 +42,8 @@ class Post extends Component {
           </div>
         </div>
       );
+    } else if (posts.length > 1 && !post) {
+      return <NotFound />;
     } else {
       return (
         <div className="post-container-loading">
@@ -53,7 +56,8 @@ class Post extends Component {
 
 export default connect(
   (state, props) => ({
-    post: selectors.getPostById(state, props.match.params.id)
+    post: selectors.getPostById(state, props.match.params.id),
+    posts: selectors.getPosts(state)
   }),
   { fetchPosts }
 )(Post);
