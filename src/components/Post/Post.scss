@@ -1,10 +1,12 @@
 .post-component {
   width: calc(100vw - 80px);
-  height: 150px;
   margin: 15px 0;
   padding: 5px;
   text-align: center;
   overflow: hidden;
+  .card-post {
+    height: 150px;
+  }
 
   // Medium devices (tablets, 768px and up)
   @media (min-width: 768px) {

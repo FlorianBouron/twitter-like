@@ -59,11 +59,15 @@ class Posts extends Component {
           />
         </div>
         <div className="posts-main">
-          {posts.map(post => {
+          {posts.map((post, index) => {
             const { userId, title, id } = post;
             return (
               <Link to={`/post/${id}`} key={id}>
-                <Post userId={userId} title={title} />
+                <Post
+                  userId={userId}
+                  title={title}
+                  delay={(index - 1) * 1000}
+                />
               </Link>
             );
           })}
