@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Input, InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { fetchPosts, selectors } from "../../redux/post";
+import { logoutUser } from "../../redux/authentication";
 import Post from "../../components/Post/Post";
 import "./Posts.scss";
 
@@ -15,16 +16,30 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    const { fetchPosts } = this.props;
-    fetchPosts();
+    const { fetchedData, error } = this.props;
+    if (fetchedData.length === 0 && error === "") {
+      const { fetchPosts } = this.props;
+      fetchPosts();
+    }
   }
+
+  handleLogout = event => {
+    event.preventDefault();
+    const { logoutUser } = this.props;
+    logoutUser();
+  };
 
   render() {
     const { posts } = this.props;
     return (
       <div className="posts-container">
         <div className="header-posts">
-          <Button className="logout-button" variant="contained" color="primary">
+          <Button
+            className="logout-button"
+            variant="contained"
+            color="primary"
+            onClick={this.handleLogout}
+          >
             Log out
           </Button>
           <Input
@@ -57,7 +72,9 @@ class Posts extends Component {
 
 export default connect(
   state => ({
-    posts: selectors.getPosts(state)
+    posts: selectors.getPosts(state),
+    fetchedData: selectors.getFetchedData(state),
+    error: selectors.getError(state)
   }),
-  { fetchPosts }
+  { fetchPosts, logoutUser }
 )(Posts);

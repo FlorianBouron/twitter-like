@@ -17,6 +17,7 @@ export const selectors = {
     state.posts.data
       ? state.posts.data.filter(post => post.id.toString() === id)[0]
       : undefined,
+  getFetchedData: state => state.posts.fetchedData,
   getFilter: state => state.posts.filter,
   getError: state => state.posts.error
 };

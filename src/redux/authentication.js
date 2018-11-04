@@ -35,6 +35,7 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state, { userId: data });
     case LOGOUT_SUCCESS:
       sessionStorage.removeItem(config.sessionStorageUserID);
+      window.location.replace("/");
       return Object.assign({}, state, { userId: "" });
     default:
       return state;
