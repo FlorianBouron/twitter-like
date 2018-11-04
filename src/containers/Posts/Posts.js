@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Button, Input, InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { fetchPosts, selectors } from "../../redux/post";
@@ -42,7 +43,11 @@ class Posts extends Component {
         <div className="posts-main">
           {posts.map(post => {
             const { userId, title, id } = post;
-            return <Post userId={userId} title={title} key={id} />;
+            return (
+              <Link to={`/post/${id}`} key={id}>
+                <Post userId={userId} title={title} />
+              </Link>
+            );
           })}
         </div>
       </div>

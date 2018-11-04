@@ -13,6 +13,10 @@ const initialState = {
 
 export const selectors = {
   getPosts: state => state.posts.data,
+  getPostById: (state, id) =>
+    state.posts.data
+      ? state.posts.data.filter(post => post.id.toString() === id)[0]
+      : undefined,
   getFilter: state => state.posts.filter,
   getError: state => state.posts.error
 };
