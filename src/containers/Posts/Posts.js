@@ -5,7 +5,8 @@ import { Button, Input, InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { fetchPosts, filterPosts, selectors } from "../../redux/post";
 import { logoutUser } from "../../redux/authentication";
-import Post from "../../components/Post/Post";
+import Post from "../../components/Post";
+import ModalError from "../../components/ModalError";
 import "./Posts.scss";
 
 class Posts extends Component {
@@ -30,7 +31,7 @@ class Posts extends Component {
   };
 
   render() {
-    const { posts, filterValue } = this.props;
+    const { posts, filterValue, error } = this.props;
     return (
       <div className="posts-container">
         <div className="header-posts">
@@ -67,6 +68,7 @@ class Posts extends Component {
             );
           })}
         </div>
+        {error.length > 1 ? <ModalError error={error} /> : ""}
       </div>
     );
   }

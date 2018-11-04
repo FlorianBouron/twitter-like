@@ -11,8 +11,8 @@ class Post extends Component {
   }
 
   static propTypes = {
-    userId: PropTypes.number,
-    title: PropTypes.string
+    userId: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired
   };
 
   render() {

@@ -5,6 +5,7 @@ import { Button, CircularProgress } from "@material-ui/core";
 import { fetchPosts, selectors } from "../../redux/post";
 import NotFound from "../NotFound";
 import "./Post.scss";
+import ModalError from "../../components/ModalError";
 
 class Post extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class Post extends Component {
   }
 
   render() {
-    const { posts, post } = this.props;
+    const { posts, post, error } = this.props;
     if (posts.length > 1 && post) {
       const { userId, id, title, body } = post;
       return (
@@ -48,6 +49,7 @@ class Post extends Component {
       return (
         <div className="post-container-loading">
           <CircularProgress size={50} />
+          {error.length > 1 ? <ModalError error={error} /> : ""}
         </div>
       );
     }
@@ -57,7 +59,8 @@ class Post extends Component {
 export default connect(
   (state, props) => ({
     post: selectors.getPostById(state, props.match.params.id),
-    posts: selectors.getPosts(state)
+    posts: selectors.getPosts(state),
+    error: selectors.getError(state)
   }),
   { fetchPosts }
 )(Post);
