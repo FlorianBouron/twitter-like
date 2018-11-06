@@ -6,7 +6,7 @@ import Post from "./Post";
 
 describe("Post Component test", () => {
   describe("Renders without crashing", () => {
-    const userId = 1;
+    const userId = "1";
     const title = "Some title";
     const delay = 1000;
     const wrapper = mount(<Post userId={userId} title={title} delay={delay} />);

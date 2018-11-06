@@ -64,7 +64,7 @@ class Posts extends Component {
             return (
               <Link to={`/post/${id}`} key={id}>
                 <Post
-                  userId={userId}
+                  userId={userId.toString()}
                   title={title}
                   delay={(index - 1) * 1000}
                 />

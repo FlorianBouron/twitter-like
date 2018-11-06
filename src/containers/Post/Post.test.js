@@ -14,7 +14,7 @@ describe("Posts Container test", () => {
       posts: {
         data: [
           {
-            userId: 10,
+            userId: "10",
             id: 100,
             title: "at nam consequatur ea labore ea harum",
             body:
@@ -23,7 +23,7 @@ describe("Posts Container test", () => {
         ],
         fetchedData: [
           {
-            userId: 10,
+            userId: "10",
             id: 100,
             title: "at nam consequatur ea labore ea harum",
             body:

@@ -13,7 +13,7 @@ class Post extends Component {
   }
 
   static propTypes = {
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     delay: PropTypes.number.isRequired
   };
